@@ -1,0 +1,60 @@
+#ifndef VEC2D_H
+#define VEC2D_H
+#include"vec.h"
+#include <iostream>
+struct Point{
+    double x;
+    double y;
+    Point operator*(double num)
+    {
+        Point p;
+        p.x = p.x*num;
+        p.y = p.y*num;
+        return p;
+    }
+    Point operator+(Point p)
+    {
+        return {x+p.x, y+p.y};
+    }
+
+    std::ostream& operator<< (std::ostream& os, const Point& p)
+    {
+        os<<"("<<p.x<<","<<p.y<<")";
+        return os;
+    }
+
+
+
+};
+
+class Vec2d
+{
+public:
+    Vec2d();
+    ~Vec2d();
+    Vec2d(int index);
+    Vec2d& operator=(const Vec2d& a);
+    Vec2d(const Vec2d & arg);
+    void copy(const Vec2d& a);
+    void print();
+    int size() const;
+    Point get(int index) const;
+    void set(int index, Point val);
+    void insert(Point val);
+    void push_back(Point data);
+    void sort();
+    int get_closest_value(Point val) const;
+    int get_closest_value(double val) const;
+    Vec<float> get_absisse() const;
+    double linInterpol(double toEval);
+private:
+    void merge(int a, int b, int c);
+    void mergesort(int a, int b);
+
+private:
+    Point* arr;
+    int capacity;
+    int current;
+};
+
+#endif // VEC2D_H
